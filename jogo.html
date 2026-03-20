@@ -1,0 +1,98 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Missão: Código Final</title>
+
+<style>
+body {
+  background-color: black;
+  color: #00ff88;
+  font-family: "Courier New", monospace;
+  text-align: center;
+  margin-top: 80px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+input {
+  padding: 10px;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+  background: black;
+  color: #00ff88;
+  border: 2px solid #00ff88;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: #00ff88;
+  border: none;
+}
+
+#mensagem {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+<h1>🕵️ MISSÃO SECRETA</h1>
+<p>Digite a senha de <strong>8 dígitos</strong> para salvar o mundo.</p>
+
+<input type="text" id="senha" maxlength="8" placeholder="********">
+<br>
+<button onclick="verificarSenha()">Desbloquear</button>
+
+<div id="mensagem"></div>
+
+<!-- Sons -->
+<audio id="somErro" src="https://www.soundjay.com/button/beep-10.mp3"></audio>
+<audio id="somAcerto" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
+
+<script>
+const senhaCorreta = "15172570";
+let tentativas = 0;
+
+function verificarSenha() {
+  const input = document.getElementById("senha").value;
+  const mensagem = document.getElementById("mensagem");
+
+  if (input.length !== 8) {
+    mensagem.innerHTML = "⚠️ A senha deve ter exatamente 8 dígitos!";
+    mensagem.style.color = "yellow";
+    return;
+  }
+
+  if (input === senhaCorreta) {
+    document.getElementById("somAcerto").play();
+    mensagem.innerHTML = "🌍 MISSÃO CUMPRIDA! Você salvou o mundo!";
+    mensagem.style.color = "#00ff88";
+  } else {
+    tentativas++;
+    document.getElementById("somErro").play();
+
+    if (tentativas === 1) {
+      mensagem.innerHTML = "❌ Código incorreto! Última tentativa...";
+      mensagem.style.color = "orange";
+    } else {
+      mensagem.innerHTML = "💀 FALHA TOTAL! O mundo não foi salvo...";
+      mensagem.style.color = "red";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+```
